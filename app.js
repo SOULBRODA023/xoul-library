@@ -59,10 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
     isModalOpen = !isModalOpen;
     if (!isModalOpen) {
       modalContainer.style.display = "block";
-      add.textContent = "-";
     } else if (isModalOpen) {
       modalContainer.style.display = "none";
-      add.textContent = "+";
     }
   });
 
@@ -86,6 +84,11 @@ document.addEventListener("DOMContentLoaded", function () {
     author.value = "";
     pages.value = "";
     checkbox.checked = false;
+    
+    //close form 
+    if(!isModalOpen){
+      modalContainer.style.display = "none";
+    }
 
     console.log(newBook.completeBook());
     console.log(myLibrary);
