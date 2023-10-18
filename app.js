@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const pages = document.getElementById("pages");
   const checkbox = document.getElementById("read");
   const modalContainer = document.getElementById("modal__container");
+  const display = document.getElementById("booksList")
   let form = document.querySelector("#form");
   let greeting = "";
   const myLibrary = [];
@@ -88,5 +89,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
     console.log(newBook.completeBook());
     console.log(myLibrary);
+    updateBooksList() 
+    
   });
+
+
+
+function updateBooksList() {
+display.innerHTML = ""
+  // Map through the library and display each book
+  myLibrary.map((book) => {
+    const bookItem = document.createElement("div");
+    bookItem.classList.add("books");
+    //newly created element
+    const myTitle = document.createElement("h3")
+    const myAuthor = document.createElement("h6")
+    const myPage = document.createElement("p")
+    const myRead = document.createElement("i")
+    //append newly created element to book
+    bookItem.appendChild(myTitle)
+    bookItem.appendChild( myAuthor)
+    bookItem.appendChild(myPage)
+    bookItem.appendChild(myRead)
+    //textContent for newly created element
+    myTitle.textContent = book.title;
+    myAuthor.textContent = book.author;
+    myPage.textContent = book.pages
+    myRead.textContent=`Read: ${book.read ? 'Yes' : 'No'}`
+    booksList.appendChild(bookItem);
+  });
+}
 });

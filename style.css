@@ -34,6 +34,7 @@ main {
   gap: 1rem;
   cursor: pointer;
   margin-top: 2rem;
+  justify-content: center;
 }
 .last-child {
   background-color: cyan;
@@ -72,4 +73,15 @@ button{
   width:7rem;
   height:2rem;
   cursor: pointer;
+}
+#booksList{
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
+  gap:3rem;
+  margin-top:3rem;
+  text-align: left;
+}
+.books{
+  border:1px solid white;
+  padding:1.5rem;
 }
