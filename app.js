@@ -7,23 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const pages = document.getElementById("pages");
   const checkbox = document.getElementById("read");
   const modalContainer = document.getElementById("modal__container");
-  let form = document.querySelector("#form")
-  const submitButton = document.querySelector("[data-submit")
+  let form = document.querySelector("#form");
   let greeting = "";
-  const titleValue = title.value;
-  const authorValue = author.value;
-  const pageValue = pages.value;
-  const checkboxValue = checkbox.checked;
   const myLibrary = [];
-
-
-
-
-
-
-
-
-
 
   // Create the header element
   let header = document.createElement("header");
@@ -47,53 +33,60 @@ document.addEventListener("DOMContentLoaded", function () {
     let greetingsText = document.createElement("h1");
     greetingsText.textContent = `Hello! ${greeting}, welcome to the Soul Library`;
     header.appendChild(greetingsText);
-
   };
   greetings();
-
-
-
 
   // Create the container
   let container = document.createElement("div");
   container.classList.add("container");
   main.appendChild(container);
-  body.appendChild(modalContainer)
-  //create an object constructor 
-  function Book(title, author, pages, read) {
-    this.title = titleValue
-    this.author = authorValue
-    this.pages = pageValue
-    this.read = read
-    this.completeBook = ()=>{
-      `${title} by ${author} of ${pages} pages`
-    }
+  body.appendChild(modalContainer);
 
+  // Object constructor for Book
+  function Book(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+    this.completeBook = () => {
+      return `${title} by ${author} of ${pages} pages`;
+    };
   }
 
-  let ismodalOpen = false
+  let isModalOpen = false;
   add.addEventListener("click", () => {
-    ismodalOpen = !ismodalOpen
-    if (!ismodalOpen) {
+    isModalOpen = !isModalOpen;
+    if (!isModalOpen) {
       modalContainer.style.display = "block";
-      add.textContent = "-"
-    }
-    else if (ismodalOpen) {
+      add.textContent = "-";
+    } else if (isModalOpen) {
       modalContainer.style.display = "none";
-      add.textContent = "+"
+      add.textContent = "+";
     }
-
-  })
-
-  const kathryn = new Book('anointing', 'Kathryn Khulman', '34')
-
+  });
 
   form.addEventListener("submit", (e) => {
-    e.preventDefault()
-    titleValue.value = "";
-    pageValue.value = "";
-    authorValue.value = "";
-    console.log(kathryn.completeBook)
-  })
+    e.preventDefault();
 
+    // Get values from input fields
+    const titleValue = title.value;
+    const authorValue = author.value;
+    const pageValue = pages.value;
+    const checkboxValue = checkbox.checked;
+
+    // Create a new Book object
+    const newBook = new Book(titleValue, authorValue, pageValue, checkboxValue);
+
+    // Add the new book to the library array
+    myLibrary.push(newBook);
+
+    // Clear the form inputs
+    title.value = "";
+    author.value = "";
+    pages.value = "";
+    checkbox.checked = false;
+
+    console.log(newBook.completeBook());
+    console.log(myLibrary);
+  });
 });
